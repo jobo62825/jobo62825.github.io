@@ -20,7 +20,7 @@
             border-radius: 10px;
         }
         button {
-            background-color: #007BFF;
+            background-color: black;
             color: white;
             padding: 10px 20px;
             margin: 10px;
@@ -29,7 +29,7 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: black;
         }
         input, textarea {
             padding: 10px;
@@ -38,16 +38,22 @@
             border: none;
             width: 80%;
         }
+        .invitation {
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Wedding Escape Adventure</h2>
-        <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name and email?</p>
+        <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name?</p>
         <input type="text" id="playerName" placeholder="Type your name here"><br>
         <input type="email" id="playerEmail" placeholder="Type your email here"><br>
         <button onclick="confirmDetails()">Proceed</button>
         <div id="options"></div>
+        <div id="invitationMessage"></div> <!-- Added div to show invitation -->
     </div>
 
     <script>
@@ -57,61 +63,29 @@
 
         function confirmDetails() {
             playerName = document.getElementById("playerName").value.trim();
-            playerEmail = document.getElementById("playerEmail").value.trim();
 
-            if (playerName === "" || playerEmail === "") {
-                alert("Please enter both your name and email to proceed.");
+            if (playerName === "") {
+                alert("Please enter your name to proceed.");
                 return;
             }
 
-            let confirmation = confirm(`You entered '${playerName}' with email '${playerEmail}'. Is this correct?`);
+            let confirmation = confirm(`You entered '${playerName}'. Is this correct?`);
             if (confirmation) {
+                showInvitationMessage(playerName);  // Show the invitation message after confirmation
                 nextStep("chooseRole");
             }
         }
 
-        function nextStep(step) {
-            document.getElementById("text").innerText = choices[step].text;
-            let optionsDiv = document.getElementById("options");
-            optionsDiv.innerHTML = "";
-            choices[step].options.forEach(option => {
-                let button = document.createElement("button");
-                button.innerText = option.text;
-                button.onclick = () => {
-                    if (option.next === "end") {
-                        let formData = `Name: ${playerName}\nEmail: ${playerEmail}\nRSVP Response: ${option.text}\nEgg Received: ${selectedEgg}`;
-                        sendEmail(formData);  // Submit to Formspree
-                    }
-                    nextStep(option.next);
-                };
-                optionsDiv.appendChild(button);
-            });
-        }
-
-        function sendEmail(formData) {
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = 'https://formspree.io/f/mwpvawal';  // Your Formspree form ID
-
-            const emailInput = document.createElement('input');
-            emailInput.type = 'email';
-            emailInput.name = 'email';
-            emailInput.value = playerEmail;
-
-            const messageTextarea = document.createElement('textarea');
-            messageTextarea.name = 'message';
-            messageTextarea.value = formData;
-
-            const submitButton = document.createElement('button');
-            submitButton.type = 'submit';
-            submitButton.innerText = 'Send';
-
-            form.appendChild(emailInput);
-            form.appendChild(messageTextarea);
-            form.appendChild(submitButton);
-
-            document.body.appendChild(form);
-            form.submit();
+        function showInvitationMessage(name) {
+            const invitationMessage = `
+                <p class="invitation">
+                    Dear <strong>${name}</strong>,<br>
+                    Your presence is requested at the esteemed Jamison Manor, located at 19004 E Leadora, Glendora, CA, 91741, on the morning of the 28th of June at 11:00. 
+                    Come dressed in your finest, as magic and wonder await you at this grand celebration of love and joy. 
+                    We eagerly await your arrival.
+                </p>
+            `;
+            document.getElementById("invitationMessage").innerHTML = invitationMessage;
         }
 
         const choices = {
@@ -183,4 +157,3 @@
     </script>
 </body>
 </html>
-
