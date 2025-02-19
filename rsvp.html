@@ -20,7 +20,7 @@
             border-radius: 10px;
         }
         button {
-            background-color: black;
+            background-color: #007BFF;
             color: white;
             padding: 10px 20px;
             margin: 10px;
@@ -29,7 +29,7 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: black;
+            background-color: #0056b3;
         }
         input, textarea {
             padding: 10px;
@@ -50,7 +50,8 @@
         <h2>Wedding Escape Adventure</h2>
         <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name?</p>
         <input type="text" id="playerName" placeholder="Type your name here"><br>
-        <button onclick="confirmDetails()">Proceed</button>
+        <input type="email" id="playerEmail" placeholder="Type your email here"><br>
+        <button id="proceedButton" onclick="confirmDetails()">Proceed</button>
         <div id="options"></div>
         <div id="invitationMessage"></div> <!-- Added div to show invitation -->
     </div>
@@ -71,7 +72,8 @@
             let confirmation = confirm(`You entered '${playerName}'. Is this correct?`);
             if (confirmation) {
                 showInvitationMessage(playerName);  // Show the invitation message after confirmation
-                nextStep("chooseRole");
+                document.getElementById("proceedButton").style.display = "none"; // Hide the proceed button
+                nextStep("chooseRole"); // Continue to the next step after the invitation message
             }
         }
 
@@ -85,6 +87,20 @@
                 </p>
             `;
             document.getElementById("invitationMessage").innerHTML = invitationMessage;
+        }
+
+        function nextStep(step) {
+            document.getElementById("text").innerText = choices[step].text;
+            let optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = ""; // Clear previous options
+            choices[step].options.forEach(option => {
+                let button = document.createElement("button");
+                button.innerText = option.text;
+                button.onclick = () => {
+                    nextStep(option.next);
+                };
+                optionsDiv.appendChild(button);
+            });
         }
 
         const choices = {
@@ -156,3 +172,4 @@
     </script>
 </body>
 </html>
+
