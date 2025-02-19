@@ -87,7 +87,7 @@
             const invitationMessage = `
                 <p class="invitation">
                     Dear <strong>${name}</strong>,<br>
-                    Your presence is requested at the esteemed Jamison Manor, located at 19004 E Leadora, Glendora, CA, 91741, on the morning of the 28th of June at 11:00. 
+                    Your presence is requested at the esteemed Jamison Manor, located at 19004 E Leadora Ave., Glendora, CA, 91741, on the morning of the 28th of June at 11:00. 
                     Come dressed in your finest, as magic and wonder await you at this grand celebration of love and joy. 
                     We eagerly await your arrival.
                 </p>
@@ -185,16 +185,16 @@
                 ]
             },
             sword: { 
-                text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!",
-                options: [{ text: "Submit RSVP", next: "submit" }] 
+                text: "Your swordplay is legendary! You may make it to the wedding, victorious.",
+                options: [{ text: "Next", next: "chooseQuest" }] 
             },
             shield: { 
-                text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", 
-                options: [{ text: "Submit RSVP", next: "submit" }] 
+                text: "Your intellect shines, you may solve the riddles ahead.", 
+                options: [{ text: "Next", next: "chooseQuest" }] 
             },
             wand: { 
-                text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!",
-                options: [{ text: "Submit RSVP", next: "submit" }] 
+                text: "Your magic enchants the spirit, clearing your path to the wedding!",
+                options: [{ text: "Next", next: "chooseQuest" }] 
             },
             chooseQuest: {
                 text: "What is your quest, adventurer?",
@@ -204,9 +204,9 @@
                     { text: "To forge an unbreakable alliance", next: "alliance" }
                 ]
             },
-            treasure: { text: "You seek treasures untold! Your journey will be one of riches and discovery.", options: [{ text: "Submit RSVP", next: "submit" }] },
-            evil: { text: "You seek to vanquish an ancient evil and bring peace to the land.", options: [{ text: "Submit RSVP", next: "submit" }] },
-            alliance: { text: "You seek to forge an alliance that will shape the future of the realm.", options: [{ text: "Submit RSVP", next: "submit" }] }
+            treasure: { text: "You seek treasures untold! Your journey will be one of riches and discovery. You are given a **purple egg** for your prowess!", options: [{ text: "Submit RSVP", next: "submit" }] },
+            evil: { text: "You seek to vanquish an ancient evil and bring peace to the land. You receive a **green egg** for your insight!", options: [{ text: "Submit RSVP", next: "submit" }] },
+            alliance: { text: "You seek to forge an alliance that will shape the future of the realm.  You receive an **orange egg** as a token of bravery!", options: [{ text: "Submit RSVP", next: "submit" }] }
         };
     </script>
 </body>
