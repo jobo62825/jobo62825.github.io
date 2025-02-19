@@ -43,6 +43,9 @@
             margin-top: 20px;
             font-size: 1.2em;
         }
+        .message {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -85,17 +88,19 @@
                     We eagerly await your arrival.
                 </p>
             `;
-            document.getElementById("invitationMessage").innerHTML = invitationMessage;
+            document.getElementById("invitationMessage").innerHTML += invitationMessage; // Append new message
         }
 
         function nextStep(step) {
             document.getElementById("text").innerText = choices[step].text;
             let optionsDiv = document.getElementById("options");
             optionsDiv.innerHTML = ""; // Clear previous options
+
             choices[step].options.forEach(option => {
                 let button = document.createElement("button");
                 button.innerText = option.text;
                 button.onclick = () => {
+                    button.style.display = "none"; // Hide the button after click
                     nextStep(option.next);
                 };
                 optionsDiv.appendChild(button);
