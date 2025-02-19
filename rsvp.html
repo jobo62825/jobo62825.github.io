@@ -20,7 +20,7 @@
             border-radius: 10px;
         }
         button {
-            background-color: #007BFF;
+            background-color: black;
             color: white;
             padding: 10px 20px;
             margin: 10px;
@@ -29,7 +29,7 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #333;
         }
         input, textarea {
             padding: 10px;
@@ -50,7 +50,6 @@
         <h2>Wedding Escape Adventure</h2>
         <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name?</p>
         <input type="text" id="playerName" placeholder="Type your name here"><br>
-        <input type="email" id="playerEmail" placeholder="Type your email here"><br>
         <button id="proceedButton" onclick="confirmDetails()">Proceed</button>
         <div id="options"></div>
         <div id="invitationMessage"></div> <!-- Added div to show invitation -->
@@ -58,7 +57,6 @@
 
     <script>
         let playerName = "";
-        let playerEmail = "";
         let selectedEgg = "";  // Variable to store the egg chosen at the end
 
         function confirmDetails() {
@@ -73,6 +71,7 @@
             if (confirmation) {
                 showInvitationMessage(playerName);  // Show the invitation message after confirmation
                 document.getElementById("proceedButton").style.display = "none"; // Hide the proceed button
+                document.getElementById("playerName").style.display = "none"; // Hide the name input field
                 nextStep("chooseRole"); // Continue to the next step after the invitation message
             }
         }
@@ -172,4 +171,3 @@
     </script>
 </body>
 </html>
-
