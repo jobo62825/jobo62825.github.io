@@ -63,6 +63,7 @@
         let playerName = "";
         let selectedRole = ""; // Variable to store the chosen role
         let selectedItem = ""; // Variable to store the item chosen
+        let selectedQuest = ""; // Variable to store the quest chosen
         let selectedEgg = "";  // Variable to store the egg chosen at the end
 
         function confirmDetails() {
@@ -112,7 +113,7 @@
         }
 
         function handleChoice(step, option) {
-            // Append the chosen role or item to the message area below the invitation
+            // Append the chosen role, item, or quest to the message area
             const newMessage = document.createElement("p");
             newMessage.classList.add("message");
 
@@ -122,6 +123,9 @@
             } else if (step === "start") {
                 selectedItem = option.text;
                 newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as your item for the journey.`;
+            } else if (step === "chooseQuest") {
+                selectedQuest = option.text;
+                newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
             }
 
             document.getElementById("messageArea").appendChild(newMessage); // Append new message
@@ -191,9 +195,19 @@
             wand: { 
                 text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!",
                 options: [{ text: "Submit RSVP", next: "submit" }] 
-            }
+            },
+            chooseQuest: {
+                text: "What is your quest, adventurer?",
+                options: [
+                    { text: "To uncover hidden treasures", next: "treasure" },
+                    { text: "To defeat an ancient evil", next: "evil" },
+                    { text: "To forge an unbreakable alliance", next: "alliance" }
+                ]
+            },
+            treasure: { text: "You seek treasures untold! Your journey will be one of riches and discovery.", options: [{ text: "Submit RSVP", next: "submit" }] },
+            evil: { text: "You seek to vanquish an ancient evil and bring peace to the land.", options: [{ text: "Submit RSVP", next: "submit" }] },
+            alliance: { text: "You seek to forge an alliance that will shape the future of the realm.", options: [{ text: "Submit RSVP", next: "submit" }] }
         };
     </script>
 </body>
 </html>
-
