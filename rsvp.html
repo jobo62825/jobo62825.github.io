@@ -31,20 +31,97 @@
         button:hover {
             background-color: #0056b3;
         }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Wedding Escape Adventure</h2>
-        <p id="text">Welcome to the wedding of Bowman & [Your Name]! Before embarking on your quest, please let us know if you'll be attending:</p>
-        <div id="options">
-            <button onclick="nextStep('start')">Yes, I’ll be there!</button>
-            <button onclick="nextStep('no_attend')">Sorry, I can’t make it</button>
-        </div>
+        <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & [Your Name]. But first, adventurer, tell us... what is your name and email?</p>
+        <input type="text" id="playerName" placeholder="Type your name here"><br>
+        <input type="email" id="playerEmail" placeholder="Type your email here"><br>
+        <button onclick="confirmDetails()">Proceed</button>
+        <div id="options"></div>
     </div>
 
     <script>
+        let playerName = "";
+        let playerEmail = "";
+
+        function confirmDetails() {
+            playerName = document.getElementById("playerName").value.trim();
+            playerEmail = document.getElementById("playerEmail").value.trim();
+
+            if (playerName === "" || playerEmail === "") {
+                alert("Please enter both your name and email to proceed.");
+                return;
+            }
+
+            let confirmation = confirm(`You entered '${playerName}' with email '${playerEmail}'. Is this correct?`);
+            if (confirmation) {
+                nextStep("chooseRole");
+            }
+        }
+
+        function sendEmail(formData) {
+            let mailtoLink = `mailto:johannajamison@gmail.com?subject=Wedding RSVP&body=${encodeURIComponent(formData)}`;
+            window.location.href = mailtoLink;
+        }
+
+        function nextStep(step) {
+            document.getElementById("text").innerText = choices[step].text;
+            let optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            choices[step].options.forEach(option => {
+                let button = document.createElement("button");
+                button.innerText = option.text;
+                button.onclick = () => {
+                    if (option.next === "end") {
+                        let formData = `Name: ${playerName}\nEmail: ${playerEmail}\nRSVP Response: ${option.text}`;
+                        sendEmail(formData);
+                    }
+                    nextStep(option.next);
+                };
+                optionsDiv.appendChild(button);
+            });
+        }
+
         const choices = {
+            chooseRole: {
+                text: "Brave adventurer, how do you see yourself?",
+                options: [
+                    { text: "A noble knight, sworn to honor", next: "hero" },
+                    { text: "A wise sage, keeper of secrets", next: "sage" },
+                    { text: "A daring rogue, master of shadows", next: "rogue" }
+                ]
+            },
+            hero: {
+                text: "Ah, a noble knight! Your heart is true, and your blade is sharp. Will you be attending the wedding feast?",
+                options: [
+                    { text: "Yes, I’ll be there!", next: "start" },
+                    { text: "Sorry, I can’t make it", next: "no_attend" }
+                ]
+            },
+            sage: {
+                text: "A wise sage! Your knowledge is vast, and your wisdom unparalleled. Will you grace the wedding with your presence?",
+                options: [
+                    { text: "Yes, I’ll be there!", next: "start" },
+                    { text: "Sorry, I can’t make it", next: "no_attend" }
+                ]
+            },
+            rogue: {
+                text: "Ah, a rogue of mystery! Quick of wit and light of foot. Will you sneak into the wedding festivities?",
+                options: [
+                    { text: "Yes, I’ll be there!", next: "start" },
+                    { text: "Sorry, I can’t make it", next: "no_attend" }
+                ]
+            },
             no_attend: {
                 text: "We’ll miss you! Would you like to leave a message for the couple?",
                 options: [
@@ -58,7 +135,7 @@
             },
             end: {
                 text: "Thank you for your response! We appreciate your love and support. ❤️",
-                options: [{ text: "Restart Adventure", next: "rsvp" }]
+                options: [{ text: "Restart Adventure", next: "chooseRole" }]
             },
             start: {
                 text: "Thank you for RSVPing! Now, before entering the enchanted wedding realm, you must choose your path. What item will you take on your journey?",
@@ -68,22 +145,10 @@
                     { text: "A magical wand", next: "wand" }
                 ]
             },
-            sword: { text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!", options: [{ text: "Restart Adventure", next: "rsvp" }] },
-            shield: { text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", options: [{ text: "Restart Adventure", next: "rsvp" }] },
-            wand: { text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!", options: [{ text: "Restart Adventure", next: "rsvp" }] }
+            sword: { text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!", options: [{ text: "Restart Adventure", next: "chooseRole" }] },
+            shield: { text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", options: [{ text: "Restart Adventure", next: "chooseRole" }] },
+            wand: { text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!", options: [{ text: "Restart Adventure", next: "chooseRole" }] }
         };
-
-        function nextStep(step) {
-            document.getElementById("text").innerText = choices[step].text;
-            let optionsDiv = document.getElementById("options");
-            optionsDiv.innerHTML = "";
-            choices[step].options.forEach(option => {
-                let button = document.createElement("button");
-                button.innerText = option.text;
-                button.onclick = () => nextStep(option.next);
-                optionsDiv.appendChild(button);
-            });
-        }
     </script>
 </body>
 </html>
