@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Escape Adventure</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Wedding Escape Adventure</h2>
+        <p id="text">Welcome to the wedding of Bowman & [Your Name]! Before embarking on your quest, please let us know if you'll be attending:</p>
+        <div id="options">
+            <button onclick="nextStep('start')">Yes, I’ll be there!</button>
+            <button onclick="nextStep('no_attend')">Sorry, I can’t make it</button>
+        </div>
+    </div>
+
+    <script>
+        const choices = {
+            no_attend: {
+                text: "We’ll miss you! Would you like to leave a message for the couple?",
+                options: [
+                    { text: "Yes, send a message", next: "message" },
+                    { text: "No, just sending my best wishes", next: "end" }
+                ]
+            },
+            message: {
+                text: "Type your message here: [Text Box]",
+                options: [{ text: "Send Message", next: "end" }]
+            },
+            end: {
+                text: "Thank you for your response! We appreciate your love and support. ❤️",
+                options: [{ text: "Restart Adventure", next: "rsvp" }]
+            },
+            start: {
+                text: "Thank you for RSVPing! Now, before entering the enchanted wedding realm, you must choose your path. What item will you take on your journey?",
+                options: [
+                    { text: "A mighty sword", next: "sword" },
+                    { text: "A sturdy shield", next: "shield" },
+                    { text: "A magical wand", next: "wand" }
+                ]
+            },
+            sword: { text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!", options: [{ text: "Restart Adventure", next: "rsvp" }] },
+            shield: { text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", options: [{ text: "Restart Adventure", next: "rsvp" }] },
+            wand: { text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!", options: [{ text: "Restart Adventure", next: "rsvp" }] }
+        };
+
+        function nextStep(step) {
+            document.getElementById("text").innerText = choices[step].text;
+            let optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            choices[step].options.forEach(option => {
+                let button = document.createElement("button");
+                button.innerText = option.text;
+                button.onclick = () => nextStep(option.next);
+                optionsDiv.appendChild(button);
+            });
+        }
+    </script>
+</body>
+</html>
