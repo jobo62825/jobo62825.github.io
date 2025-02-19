@@ -49,25 +49,11 @@
         <button onclick="confirmDetails()">Proceed</button>
         <div id="options"></div>
     </div>
-<!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/mwpvawal"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
+
     <script>
         let playerName = "";
         let playerEmail = "";
+        let selectedEgg = "";  // Variable to store the egg chosen at the end
 
         function confirmDetails() {
             playerName = document.getElementById("playerName").value.trim();
@@ -84,32 +70,6 @@
             }
         }
 
-        function sendEmail(formData) {
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = 'https://formspree.io/f/mwpvawal';  // Replace with your Formspree form ID
-
-            const replytoInput = document.createElement('input');
-            replytoInput.type = 'email';
-            replytoInput.name = '_replyto';
-            replytoInput.value = playerEmail;
-
-            const bodyTextarea = document.createElement('textarea');
-            bodyTextarea.name = 'body';
-            bodyTextarea.value = formData;
-
-            const submitInput = document.createElement('input');
-            submitInput.type = 'submit';
-            submitInput.value = 'Send';
-
-            form.appendChild(replytoInput);
-            form.appendChild(bodyTextarea);
-            form.appendChild(submitInput);
-
-            document.body.appendChild(form);
-            form.submit();
-        }
-
         function nextStep(step) {
             document.getElementById("text").innerText = choices[step].text;
             let optionsDiv = document.getElementById("options");
@@ -119,13 +79,39 @@
                 button.innerText = option.text;
                 button.onclick = () => {
                     if (option.next === "end") {
-                        let formData = `Name: ${playerName}\nEmail: ${playerEmail}\nRSVP Response: ${option.text}`;
-                        sendEmail(formData);
+                        let formData = `Name: ${playerName}\nEmail: ${playerEmail}\nRSVP Response: ${option.text}\nEgg Received: ${selectedEgg}`;
+                        sendEmail(formData);  // Submit to Formspree
                     }
                     nextStep(option.next);
                 };
                 optionsDiv.appendChild(button);
             });
+        }
+
+        function sendEmail(formData) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://formspree.io/f/mwpvawal';  // Your Formspree form ID
+
+            const emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.name = 'email';
+            emailInput.value = playerEmail;
+
+            const messageTextarea = document.createElement('textarea');
+            messageTextarea.name = 'message';
+            messageTextarea.value = formData;
+
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.innerText = 'Send';
+
+            form.appendChild(emailInput);
+            form.appendChild(messageTextarea);
+            form.appendChild(submitButton);
+
+            document.body.appendChild(form);
+            form.submit();
         }
 
         const choices = {
@@ -181,10 +167,20 @@
                     { text: "A magical wand", next: "wand" }
                 ]
             },
-            sword: { text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!", options: [{ text: "Submit RSVP", next: "submit" }] },
-            shield: { text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", options: [{ text: "Submit RSVP", next: "submit" }] },
-            wand: { text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!", options: [{ text: "Submit RSVP", next: "submit" }] }
+            sword: { 
+                text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!",
+                options: [{ text: "Submit RSVP", next: "submit" }] 
+            },
+            shield: { 
+                text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", 
+                options: [{ text: "Submit RSVP", next: "submit" }] 
+            },
+            wand: { 
+                text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!",
+                options: [{ text: "Submit RSVP", next: "submit" }] 
+            }
         };
     </script>
 </body>
 </html>
+
