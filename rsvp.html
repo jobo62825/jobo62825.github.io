@@ -72,7 +72,7 @@
         function sendEmail(formData) {
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = 'https://formspree.io/f/mwpvawal'; // Replace with your Formspree email
+            form.action = 'https://formspree.io/f/mwpvawal';  // Replace with your Formspree form ID
 
             const replytoInput = document.createElement('input');
             replytoInput.type = 'email';
@@ -156,7 +156,7 @@
             },
             end: {
                 text: "Thank you for your response! We appreciate your love and support. ❤️",
-                options: [{ text: "Restart Adventure", next: "chooseRole" }]
+                options: [{ text: "Submit RSVP", next: "submit" }]
             },
             start: {
                 text: "Thank you for RSVPing! Now, before entering the enchanted wedding realm, you must choose your path. What item will you take on your journey?",
@@ -166,11 +166,10 @@
                     { text: "A magical wand", next: "wand" }
                 ]
             },
-            sword: { text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!", options: [{ text: "Restart Adventure", next: "chooseRole" }] },
-            shield: { text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", options: [{ text: "Restart Adventure", next: "chooseRole" }] },
-            wand: { text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!", options: [{ text: "Restart Adventure", next: "chooseRole" }] }
+            sword: { text: "Your swordplay is legendary! You make it to the wedding, victorious. You receive an **orange egg** as a token of bravery!", options: [{ text: "Submit RSVP", next: "submit" }] },
+            shield: { text: "Your intellect shines as you solve the riddle and enter the wedding grounds. You receive a **green egg** for your insight!", options: [{ text: "Submit RSVP", next: "submit" }] },
+            wand: { text: "Your magic enchants the spirit, clearing your path to the wedding! You are given a **purple egg** for your magical prowess!", options: [{ text: "Submit RSVP", next: "submit" }] }
         };
     </script>
 </body>
 </html>
-
