@@ -61,6 +61,8 @@
 
     <script>
         let playerName = "";
+        let selectedRole = ""; // Variable to store the chosen role
+        let selectedItem = ""; // Variable to store the item chosen
         let selectedEgg = "";  // Variable to store the egg chosen at the end
 
         function confirmDetails() {
@@ -102,16 +104,27 @@
                 button.innerText = option.text;
                 button.onclick = () => {
                     button.style.display = "none"; // Hide the button after click
-                    nextStep(option.next);
+                    handleChoice(step, option);
+                    nextStep(option.next); // Continue to the next step after the choice is made
                 };
                 optionsDiv.appendChild(button);
             });
+        }
 
-            // Append the next story message (not italicized) under the invitation
+        function handleChoice(step, option) {
+            // Append the chosen role or item to the message area below the invitation
             const newMessage = document.createElement("p");
             newMessage.classList.add("message");
-            newMessage.innerText = choices[step].text;
-            document.getElementById("messageArea").appendChild(newMessage);
+
+            if (step === "chooseRole") {
+                selectedRole = option.text;
+                newMessage.innerHTML = `You have chosen the role of <strong>${selectedRole}</strong>.`;
+            } else if (step === "start") {
+                selectedItem = option.text;
+                newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as your item for the journey.`;
+            }
+
+            document.getElementById("messageArea").appendChild(newMessage); // Append new message
         }
 
         const choices = {
@@ -183,3 +196,4 @@
     </script>
 </body>
 </html>
+
