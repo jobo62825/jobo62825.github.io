@@ -31,7 +31,7 @@
         button:hover {
             background-color: #0056b3;
         }
-        input {
+        input, textarea {
             padding: 10px;
             margin: 10px;
             border-radius: 5px;
@@ -70,8 +70,29 @@
         }
 
         function sendEmail(formData) {
-            let mailtoLink = `mailto:johannajamison@gmail.com?subject=Wedding RSVP&body=${encodeURIComponent(formData)}`;
-            window.location.href = mailtoLink;
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'http://formspree.io/you@email.com'; // Replace with your Formspree email
+
+            const replytoInput = document.createElement('input');
+            replytoInput.type = 'email';
+            replytoInput.name = '_replyto';
+            replytoInput.value = playerEmail;
+
+            const bodyTextarea = document.createElement('textarea');
+            bodyTextarea.name = 'body';
+            bodyTextarea.value = formData;
+
+            const submitInput = document.createElement('input');
+            submitInput.type = 'submit';
+            submitInput.value = 'Send';
+
+            form.appendChild(replytoInput);
+            form.appendChild(bodyTextarea);
+            form.appendChild(submitInput);
+
+            document.body.appendChild(form);
+            form.submit();
         }
 
         function nextStep(step) {
@@ -152,3 +173,4 @@
     </script>
 </body>
 </html>
+
