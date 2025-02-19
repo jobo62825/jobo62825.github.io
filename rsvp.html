@@ -56,6 +56,7 @@
         <button id="proceedButton" onclick="confirmDetails()">Proceed</button>
         <div id="options"></div>
         <div id="invitationMessage"></div> <!-- Added div to show invitation -->
+        <div id="messageArea"></div> <!-- Added div to append subsequent messages -->
     </div>
 
     <script>
@@ -88,7 +89,7 @@
                     We eagerly await your arrival.
                 </p>
             `;
-            document.getElementById("invitationMessage").innerHTML += invitationMessage; // Append new message
+            document.getElementById("invitationMessage").innerHTML += invitationMessage; // Append new invitation message
         }
 
         function nextStep(step) {
@@ -105,6 +106,12 @@
                 };
                 optionsDiv.appendChild(button);
             });
+
+            // Append the next story message (not italicized) under the invitation
+            const newMessage = document.createElement("p");
+            newMessage.classList.add("message");
+            newMessage.innerText = choices[step].text;
+            document.getElementById("messageArea").appendChild(newMessage);
         }
 
         const choices = {
