@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"Wuv, twu wuv..."</title>
+    <title>Wedding Escape Adventure</title>
     <style>
         body {
             background-color: black;
@@ -53,12 +53,14 @@
 </head>
 <body>
     <div class="container">
-        <h2>Wedding Escape Adventure</h2>
+        <h2>"Wuv, twu wuv..."</h2>
+        <!-- Invitation Message Block -->
+        <div id="invitationMessage"></div>
+
         <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name?</p>
         <input type="text" id="playerName" placeholder="Type your name here"><br>
         <button id="proceedButton" onclick="confirmDetails()">Proceed</button>
         <div id="options"></div>
-        <div id="invitationMessage"></div> <!-- Added div to show invitation -->
         <div id="messageArea"></div> <!-- Added div to append subsequent messages -->
     </div>
 
@@ -87,6 +89,10 @@
 
         function showInvitationMessage(name) {
             const invitationMessage = `
+                <p>
+                    A fresh, unmarked envelope lies on the floor, the dust of the desert clinging to its smooth surface, lightly touched by the wind and sun. 
+                    You pick it up, feeling the weight of something important inside. When you open it, a note appears, the ink still sharp and new against the crisp white paper.
+                </p>
                 <p class="invitation">
                     Dear <strong>${name}</strong>,<br>
                     Your presence is requested at the esteemed Jamison Manor, located at 19004 E Leadora Ave., Glendora, CA, 91741, on the morning of the 28th of June at 11:00. 
@@ -94,7 +100,7 @@
                     We eagerly await your arrival.
                 </p>
             `;
-            document.getElementById("invitationMessage").innerHTML += invitationMessage; // Append new invitation message
+            document.getElementById("invitationMessage").innerHTML = invitationMessage; // Set invitation message above the rest of the content
         }
 
         function nextStep(step) {
