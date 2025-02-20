@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Escape Adventure</title>
+    <title>"Wuv, twu wuv..."</title>
     <style>
         body {
             background-color: black;
@@ -45,6 +45,9 @@
         }
         .message {
             margin-top: 10px;
+        }
+        #hiddenMessageBox {
+            display: none;
         }
     </style>
 </head>
@@ -130,7 +133,6 @@
             } else if (step === "chooseQuest") {
                 selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
-                    showForm();
             }
 
             document.getElementById("messageArea").appendChild(newMessage); // Append new message
@@ -145,7 +147,10 @@
 
                 // Automatically populate the form message field ONLY after quest is chosen
                 const messageBox = document.querySelector("textarea[name='message']");
-                messageBox.value = `Adventurer: ${playerName}\nRole: ${selectedRole}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
+                messageBox.value = `${playerName} is coming to your wedding!\nRole: ${selectedRole}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
+
+                // Hide the message field label and box from the user
+                document.getElementById("hiddenMessageBox").style.display = "none";
 
                 // Disable the message box so it can't be edited
                 messageBox.setAttribute("readonly", true);
@@ -237,13 +242,17 @@
             <label>Your email:
                 <input type="email" name="email" required>
             </label><br><br>
-            <label>Your message:
-                <textarea name="message" required readonly></textarea>
-            </label><br><br>
+            <!-- Hidden message field -->
+            <div id="hiddenMessageBox">
+                <label>Your message:
+                    <textarea name="message" required readonly></textarea>
+                </label><br><br>
+            </div>
             <button type="submit">Send</button>
         </form>
     </div>
 
 </body>
 </html>
+
 
