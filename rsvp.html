@@ -50,7 +50,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Wedding Escape Adventures</h2>
+        <h2>Wedding Escape Adventure</h2>
         <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name?</p>
         <input type="text" id="playerName" placeholder="Type your name here"><br>
         <button id="proceedButton" onclick="confirmDetails()">Proceed</button>
@@ -114,6 +114,9 @@
             // Show the form after "chooseQuest"
             if (step === "chooseQuest") {
                 document.getElementById("formDiv").style.display = "block"; // Show the form when the quest is chosen
+                // Automatically fill in the form's message with choices
+                let messageBox = document.querySelector("textarea[name='message']");
+                messageBox.value = `Adventurer: ${playerName}\nRole: ${selectedRole}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
             }
         }
 
@@ -212,6 +215,7 @@
             treasure: { text: "You seek treasures untold! Your journey will be one of riches and discovery. You are given a **purple egg** for your prowess!", options: [{ text: "Submit RSVP", next: "submit" }] },
             evil: { text: "You seek to vanquish an ancient evil and bring peace to the land. You receive a **green egg** for your insight!", options: [{ text: "Submit RSVP", next: "submit" }] },
             alliance: { text: "You seek to forge an alliance that will shape the future of the realm.  You receive an **orange egg** as a token of bravery!", options: [{ text: "Submit RSVP", next: "submit" }] },
+
         };
     </script>
 
@@ -230,4 +234,5 @@
 
 </body>
 </html>
+
 
