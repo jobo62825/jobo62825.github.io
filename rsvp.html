@@ -50,7 +50,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Wedding Escape Adventure</h2>
+        <h2>"Wuv, twu wuv..."e</h2>
         <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name?</p>
         <input type="text" id="playerName" placeholder="Type your name here"><br>
         <button id="proceedButton" onclick="confirmDetails()">Proceed</button>
@@ -64,7 +64,6 @@
         let selectedRole = ""; // Variable to store the chosen role
         let selectedItem = ""; // Variable to store the item chosen
         let selectedQuest = ""; // Variable to store the quest chosen
-        let selectedEgg = "";  // Variable to store the egg chosen at the end
 
         function confirmDetails() {
             playerName = document.getElementById("playerName").value.trim();
@@ -141,7 +140,7 @@
             const formDiv = document.getElementById("formDiv");
             formDiv.style.display = "block"; // Show the form
 
-            // Automatically populate the form message field
+            // Automatically populate the form message field ONLY after quest is chosen
             const messageBox = document.querySelector("textarea[name='message']");
             messageBox.value = `Adventurer: ${playerName}\nRole: ${selectedRole}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
 
