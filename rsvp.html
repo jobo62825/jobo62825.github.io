@@ -50,7 +50,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Wuv, twu wuv...</h2>
+        <h2>Wedding Escape Adventure</h2>
         <p id="text">The kingdom is abuzz with celebration! You have received an invitation to the grand union of Bowman & Jo. But first, adventurer, tell us... what is your name?</p>
         <input type="text" id="playerName" placeholder="Type your name here"><br>
         <button id="proceedButton" onclick="confirmDetails()">Proceed</button>
@@ -111,12 +111,9 @@
                 optionsDiv.appendChild(button);
             });
 
-            // Show the form after "chooseQuest"
+            // Show the form after the quest is chosen
             if (step === "chooseQuest") {
-                document.getElementById("formDiv").style.display = "block"; // Show the form when the quest is chosen
-                // Automatically fill in the form's message with choices
-                let messageBox = document.querySelector("textarea[name='message']");
-                messageBox.value = `Adventurer: ${playerName}\nRole: ${selectedRole}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
+                showForm(); // Show the form when quest is chosen
             }
         }
 
@@ -137,6 +134,19 @@
             }
 
             document.getElementById("messageArea").appendChild(newMessage); // Append new message
+        }
+
+        // Show the form and update its message
+        function showForm() {
+            const formDiv = document.getElementById("formDiv");
+            formDiv.style.display = "block"; // Show the form
+
+            // Automatically populate the form message field
+            const messageBox = document.querySelector("textarea[name='message']");
+            messageBox.value = `Adventurer: ${playerName}\nRole: ${selectedRole}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
+
+            // Disable the message box so it can't be edited
+            messageBox.setAttribute("readonly", true);
         }
 
         const choices = {
@@ -233,9 +243,3 @@
 
 </body>
 </html>
-
-</body>
-</html>
-
-
-
