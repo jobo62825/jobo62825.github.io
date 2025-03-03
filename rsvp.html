@@ -136,7 +136,15 @@
             } else if (step === "start") {
                 selectedItem = option.text;
                 newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as your item for the journey.`;
-            } else if (step === "chooseQuest") {
+            } else if (step === "treasure") {
+                selectedQuest = option.text;
+                newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
+                    showForm();
+            } else if (step === "evil") {
+                selectedQuest = option.text;
+                newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
+                    showForm();
+            } else if (step === "alliance") {
                 selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
                     showForm();
@@ -241,14 +249,7 @@
                     { text: "To forge an unbreakable alliance", next: "alliance" }
                 ]
             },
-            chooseQuest: {
-                text: "What is your quest, adventurer?",
-                options: [
-                    { text: "To uncover hidden treasures", next: "treasure" },
-                    { text: "To defeat an ancient evil", next: "evil" },
-                    { text: "To forge an unbreakable alliance", next: "alliance" }
-                ]
-            },
+
             treasure: { text: "You seek treasures untold! Your journey will be one of riches and discovery. You are given a **purple egg** for your prowess!", options: [{ text: "Submit RSVP", next: "submit" }] },
             evil: { text: "You seek to vanquish an ancient evil and bring peace to the land. You receive a **green egg** for your insight!", options: [{ text: "Submit RSVP", next: "submit" }] },
             alliance: { text: "You seek to forge an alliance that will shape the future of the realm.  You receive an **orange egg** as a token of bravery!", options: [{ text: "Submit RSVP", next: "submit" }] },
