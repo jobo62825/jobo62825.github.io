@@ -260,18 +260,16 @@
                 ]
             },
 
-            treasure: { text: "You seek treasures untold! Your journey will be one of riches and discovery. You are given a **purple egg** for your prowess!" },
-            evil: { text: "You seek to vanquish an ancient evil and bring peace to the land. You receive a **green egg** for your insight!" },
-            alliance: { text: "You seek to forge an alliance that will shape the future of the realm.  You receive an **orange egg** as a token of bravery!" },
+            treasure: { text: "You seek treasures untold! Your journey will be one of riches and discovery. You will receive a special token for your prowess! If you are bringing another guest, please ask them to complete this form." },
+            evil: { text: "You seek to vanquish an ancient evil and bring peace to the land. You will receive a special gift for your insight! If you are bringing another guest, please have them complete this form as well." },
+            alliance: { text: "You seek to forge an alliance that will shape the future of the realm.  On the day of this union, you will receive a special gift as a token of bravery! If you are bringing another guest, please have them complete a separate." },
         };
     </script>
 
     <!-- Form to submit the RSVP, initially hidden -->
     <div id="formDiv" style="display: none;">
         <form action="https://formspree.io/f/mwpvawal" method="POST">
-            <label>Your email:
-                <input type="email" name="email" required>
-            </label><br><br>
+
             <!-- Hidden message field -->
             <div id="hiddenMessageBox">
                 <label>Your message:
