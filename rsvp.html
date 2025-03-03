@@ -177,7 +177,7 @@
 
                 // Automatically populate the form message field ONLY after quest is chosen
                 const messageBox = document.querySelector("textarea[name='message']");
-                messageBox.value = `${playerName} cannot make it to your wedding!\nRole: ${selectedRole}\nFood: ${selectedFood}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
+                messageBox.value = `${playerName} cannot make it to your wedding!`;
 
                 // Hide the message field label and box from the user
                 document.getElementById("hiddenMessageBox").style.display = "inline";
@@ -226,8 +226,7 @@
                 ]
             },
             message: {
-                text: "Type your message here: [Text Box]",
-                options: [{ text: "Send Message", next: "end" }]
+                text: "",
             },
             end: {
                 text: "Thank you for your response! We appreciate your love and support. ❤️",
