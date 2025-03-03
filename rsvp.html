@@ -137,15 +137,15 @@
                 selectedItem = option.text;
                 newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as your item for the journey.`;
             } else if (step === "treasure") {
-                selectedQuest = option.text;
+                selectedQuest = "uncover hidden treasures";
                 newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
                     showForm();
             } else if (step === "evil") {
-                selectedQuest = option.text;
+                selectedQuest = "defeat an ancient evil";
                 newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
                     showForm();
             } else if (step === "alliance") {
-                selectedQuest = option.text;
+                selectedQuest = "forge an unbreakable alliance";
                 newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
                     showForm();
             }
