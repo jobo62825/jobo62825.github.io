@@ -135,17 +135,17 @@
                 newMessage.innerHTML = `You have chosen <strong>${selectedFood}</strong> to nourish you.`;
             } else if (step === "start") {
                 selectedItem = option.text;
-                newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as your item for the journey.`;
-            } else if (step === "treasure") {
-                selectedQuest = "To uncover hidden treasures";
+                newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as the item for your journey.`;
+            } else if (step === "sword") {
+                selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
-            } else if (step === "evil") {
-                selectedQuest = "To defeat an ancient evil";
+            } else if (step === "sheild") {
+                selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
-            } else if (step === "alliance") {
-                selectedQuest = "To forge an unbreakable alliance";
+            } else if (step === "wand") {
+                selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
             }
