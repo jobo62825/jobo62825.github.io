@@ -149,7 +149,8 @@
                 newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
             } else if (step === "no_attend") {
-                    showForm();
+                            document.getElementById("messageArea").innerHTML = ""; // Clear previous messages
+        showForm(); // Show the form where the user can leave a message
             }
 
             document.getElementById("messageArea").appendChild(newMessage); // Append new message
