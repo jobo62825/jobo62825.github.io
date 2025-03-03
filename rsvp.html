@@ -148,6 +148,8 @@
                 selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
+            } else if (step === "no_attend") {
+                    showForm();
             }
 
             document.getElementById("messageArea").appendChild(newMessage); // Append new message
@@ -169,6 +171,20 @@
 
                 // Disable the message box so it can't be edited
                 messageBox.setAttribute("readonly", true);
+            } else
+                const formDiv = document.getElementById("formDiv");
+                formDiv.style.display = "block"; // Show the form
+
+                // Automatically populate the form message field ONLY after quest is chosen
+                const messageBox = document.querySelector("textarea[name='message']");
+                messageBox.value = `${playerName} cannot make it to your wedding!\nRole: ${selectedRole}\nFood: ${selectedFood}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
+
+                // Hide the message field label and box from the user
+                document.getElementById("hiddenMessageBox").style.display = "inline";
+
+                // Disable the message box so it can't be edited
+                messageBox.setAttribute("readonly", false);
+                
             }
         }
 
