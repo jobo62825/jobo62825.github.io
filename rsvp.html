@@ -183,8 +183,8 @@
                 // Hide the message field label and box from the user
                 document.getElementById("hiddenMessageBox").style.display = "inline";
 
-                // Disable the message box so it can't be edited
-                messageBox.setAttribute("readonly", false);
+                // Enable the message box so it can be edited
+        messageBox.removeAttribute("readonly"); // Make it editable
                 
             }
         }
