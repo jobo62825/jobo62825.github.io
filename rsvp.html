@@ -67,6 +67,7 @@
     <script>
         let playerName = "";
         let selectedRole = ""; // Variable to store the chosen role
+        let selectedfood = ""; // Variable to store the food chosen
         let selectedItem = ""; // Variable to store the item chosen
         let selectedQuest = ""; // Variable to store the quest chosen
 
@@ -119,10 +120,6 @@
                 optionsDiv.appendChild(button);
             });
 
-            // Show the form only after quest is chosen
-            if (step === "chooseQuest") {
-                showForm(); // Show the form when quest is chosen
-            }
         }
 
         function handleChoice(step, option) {
@@ -133,20 +130,23 @@
             if (step === "chooseRole") {
                 selectedRole = option.text;
                 newMessage.innerHTML = `You have chosen the role of <strong>${selectedRole}</strong>.`;
+             } else if (step === "food") {
+                selectedfood = option.text;
+                newMessage.innerHTML = `You have chosen <strong>${selectedfood}</strong> to nourish you.`;
             } else if (step === "start") {
                 selectedItem = option.text;
                 newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as your item for the journey.`;
             } else if (step === "treasure") {
-                selectedQuest = "uncover hidden treasures";
-                newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
+                selectedQuest = "To uncover hidden treasures";
+                newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
             } else if (step === "evil") {
-                selectedQuest = "defeat an ancient evil";
-                newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
+                selectedQuest = "To defeat an ancient evil";
+                newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
             } else if (step === "alliance") {
-                selectedQuest = "forge an unbreakable alliance";
-                newMessage.innerHTML = `Your quest is to <strong>${selectedQuest}</strong>.`;
+                selectedQuest = "To forge an unbreakable alliance";
+                newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
             }
 
@@ -198,7 +198,7 @@
             rogue: {
                 text: "Ah, a rogue of mystery! Quick of wit and light of foot. Will you sneak into the wedding festivities?",
                 options: [
-                    { text: "Yes, I’ll be there!", next: "start" },
+                    { text: "Yes, I’ll be there!", next: "food" },
                     { text: "Sorry, I can’t make it", next: "no_attend" }
                 ]
             },
@@ -217,8 +217,18 @@
                 text: "Thank you for your response! We appreciate your love and support. ❤️",
                 options: [{ text: "Submit RSVP", next: "submit" }]
             },
+
+            food: {
+                text: "Thank you for RSVPing! As an honored guest at our celebration, what shall grace your plate and fuel you for a night of merriment?",
+                options: [
+                    { text: "The Feast of the Flourished Blade (Pasta)", next: "start" },
+                    { text: "The Sea's Bounty (Gluten-Free, Fish)", next: "start" },
+                    { text: "The Garden's Blessing (Vegan)", next: "start" }
+                ]
+            },
+            
             start: {
-                text: "Thank you for RSVPing! Now, before entering the enchanted wedding realm, you must choose your path. What item will you take on your journey?",
+                text: "Ah, a feast fit for the journey ahead! Now, before entering the enchanted wedding realm, you must choose your path. What item will you take on your journey?",
                 options: [
                     { text: "A mighty sword", next: "sword" },
                     { text: "A sturdy shield", next: "shield" },
