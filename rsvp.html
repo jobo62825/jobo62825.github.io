@@ -67,7 +67,7 @@
     <script>
         let playerName = "";
         let selectedRole = ""; // Variable to store the chosen role
-        let selectedfood = ""; // Variable to store the food chosen
+        let selectedFood = ""; // Variable to store the food chosen
         let selectedItem = ""; // Variable to store the item chosen
         let selectedQuest = ""; // Variable to store the quest chosen
 
@@ -131,8 +131,8 @@
                 selectedRole = option.text;
                 newMessage.innerHTML = `You have chosen the role of <strong>${selectedRole}</strong>.`;
              } else if (step === "food") {
-                selectedfood = option.text;
-                newMessage.innerHTML = `You have chosen <strong>${selectedfood}</strong> to nourish you.`;
+                selectedFood = option.text;
+                newMessage.innerHTML = `You have chosen <strong>${selectedFood}</strong> to nourish you.`;
             } else if (step === "start") {
                 selectedItem = option.text;
                 newMessage.innerHTML = `You have chosen <strong>${selectedItem}</strong> as your item for the journey.`;
@@ -156,13 +156,13 @@
         // Show the form and update its message
         function showForm() {
             // Ensure quest and other selections are properly set
-            if (selectedRole && selectedItem && selectedQuest) {
+            if (selectedRole  && selectedFood && selectedItem && selectedQuest) {
                 const formDiv = document.getElementById("formDiv");
                 formDiv.style.display = "block"; // Show the form
 
                 // Automatically populate the form message field ONLY after quest is chosen
                 const messageBox = document.querySelector("textarea[name='message']");
-                messageBox.value = `${playerName} is coming to your wedding!\nRole: ${selectedRole}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
+                messageBox.value = `${playerName} is coming to your wedding!\nRole: ${selectedRole}\nFood: ${selectedFood}\nItem: ${selectedItem}\nQuest: ${selectedQuest}`;
 
                 // Hide the message field label and box from the user
                 document.getElementById("hiddenMessageBox").style.display = "none";
