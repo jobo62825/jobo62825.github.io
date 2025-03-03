@@ -60,7 +60,7 @@
 </head>
 <body>
         <!-- Audio Player - Automatically plays the song and loops it -->
-    <audio controls autoplay loop>
+    <audio autoplay loop>
         <source src="https://github.com/jobo62825/music/raw/refs/heads/main/Homeward%20Bound.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
@@ -152,7 +152,7 @@
                 selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
-            } else if (step === "sheild") {
+            } else if (step === "shield") {
                 selectedQuest = option.text;
                 newMessage.innerHTML = `Your quest is <strong>${selectedQuest}</strong>.`;
                     showForm();
@@ -271,7 +271,7 @@
                 ]
             },
             shield: { 
-                text: "A sheild-bearer! Do you stand to protect, to endure, or defy? What nobel quest calls you to raise your guard?", 
+                text: "A shield-bearer! Do you stand to protect, to endure, or defy? What nobel quest calls you to raise your guard?", 
                 options: [
                     { text: "To uncover hidden treasures", next: "treasure" },
                     { text: "To defeat an ancient evil", next: "evil" },
